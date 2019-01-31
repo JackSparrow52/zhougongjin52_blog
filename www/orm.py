@@ -14,7 +14,7 @@ async def create_pool(loop, **kw):
             user=kw['user'],
             password=kw['password'],
             db=kw['db'],
-            charset=kw.get('charset', 'utf-8'),
+            charset=kw.get('charset', 'utf8'),
             autocommit=kw.get('autocommit', True),
             maxsize=kw.get('maxsize', 10),
             minsize=kw.get('minsize', 1),
@@ -98,7 +98,7 @@ class ModelMetaclass(type):
         for k, v in attrs.items():
             if isinstance(v, Field):
                 logging.info(' found mapping: %s ==> %s' % (k, v))
-                mapping[k] = v
+                mappings[k] = v
                 if v.primary_key:
                     if primaryKey:
                         raise StandardError('Duplicate primary key for field: %s' % k)
@@ -115,8 +115,8 @@ class ModelMetaclass(type):
         attrs['__primary_key__'] = primaryKey
         attrs['__fields__'] = fields
         attrs['__select__'] = 'select `%s`, %s from `%s`' % (primaryKey, ', '.join(escaped_fields), tableName)
-        attrs['__insert__'] = 'insert into `%s` (%s, `%s`) values (%s)' % (tableName, ', '.join(escaped_fields), primaryKey, create_args_string(len(escapted_fields) + 1))
-        attrs['__update__'] = 'update `%s` set %s where `%s`=?' % (tableName, join(map(lambda f: '`%s`=?' % (mappings.get(f).name or f), fields)), primaryKey)      
+        attrs['__insert__'] = 'insert into `%s` (%s, `%s`) values (%s)' % (tableName, ', '.join(escaped_fields), primaryKey, create_args_string(len(escaped_fields) + 1))
+        attrs['__update__'] = 'update `%s` set %s where `%s`=?' % (tableName, ', '.join(map(lambda f: '`%s`=?' % (mappings.get(f).name or f), fields)), primaryKey)      
         attrs['__delete__'] = 'delete from `%s` where `%s`=?' % (tableName, primaryKey)
         return type.__new__(cls, name, bases, attrs)
     
@@ -128,10 +128,10 @@ class Model(dict, metaclass=ModelMetaclass):
             return self[key]
         except KeyError:
             raise AttributeError(r"'Model' object has no attribute '%s'" % key)
-    def __getattr__(self, key, value):
+    def __setattr__(self, key, value):
         self[key] = value
     def getValue(self, key):
-        value = getattr(self, key, None)
+        return getattr(self, key, None)
     def getValueOrDefault(self, key):
         value = getattr(self, key, None)
         if value is None:
@@ -139,7 +139,9 @@ class Model(dict, metaclass=ModelMetaclass):
             if field.default is not None:
                 value = field.default() if callable(field.default) else field.default
                 logging.debug('using default value for %s: %s' % (key, str(value)))
+                setattr(self, key, value)
         return value
+		
     @classmethod
     async def findAll(cls, where=None, args=None, **kw):
         sql = [cls.__select]
