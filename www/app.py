@@ -86,7 +86,7 @@ async def response_factory(app, handler):
                 return web.Response(t, str(m))
         # default
         resp = web.Response(body=str(r).encode('utf-8'))
-        resp.content)_type = 'text/plain;charset=utf-8'
+        resp.content_type = 'text/plain;charset=utf-8'
         return resp
     return response
 
@@ -108,7 +108,7 @@ def index(request):
     return web.Response(text='周公瑾52的博客')
 
 async def init(loop):
-    await orm.create_pool(loop=loop, host='172.16.60.236', port=3306, user='www-data', password='www-data', db='awesome')
+    await orm.create_pool(loop=loop, host='127.0.0.1', port=3306, user='www-data', password='www-data', db='awesome')
     app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
     init_jinja2(app, filters=dict(datetime=datetime_filter))
     add_routes(app, 'handlers')
