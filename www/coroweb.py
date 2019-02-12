@@ -90,12 +90,12 @@ class RequestHandler(object):
                 if not request.content_type:
                     return web.HTTPBadRequest('Missing Content-Type.')
                 ct = request.content_type.lower()
-                if ct.startwith('application/json'):
+                if ct.startswith('application/json'):
                     params = await request.json()
                     if not isinstance(params, dict):
                         return web.HTTPBadRequest('JSON body must be object.')
                     kw = params
-                elif ct.startwith('application/x-www-form-urlencoded') or ct.startwith('mutipart/form-data'):
+                elif ct.startswith('application/x-www-form-urlencoded') or ct.startswith('mutipart/form-data'):
                     params = await request.post()
                     kw = dict(**params)
                 else:
@@ -119,17 +119,18 @@ class RequestHandler(object):
                 if k in kw:
                     logging.warning('Duplicate arg name in named arg and kw args: %s' % k)
                 kw[k] = v
-            if self._has_request_arg:
-                kw['request'] = request
-            if self._required_kw_args:
-                for name in self._required_kw_args:
-                    if not name in kw:
-                        return web.HTTPBadRequest('Missing argument: %s' % name)
-            try:
-                r = await self._func(**kw)
-                return r
-            except APIError as e:
-                return dict(error=e.error, data=e.data, message=e.message)
+        if self._has_request_arg:
+            kw['request'] = request
+        if self._required_kw_args:
+            for name in self._required_kw_args:
+                if not name in kw:
+                    return web.HTTPBadRequest('Missing argument: %s' % name)
+        logging.info('call with args: %s' % str(kw))
+        try:
+            r = await self._func(**kw)
+            return r
+        except APIError as e:
+            return dict(error=e.error, data=e.data, message=e.message)
  
 def add_static(app):
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static') 

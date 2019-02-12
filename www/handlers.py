@@ -13,6 +13,7 @@ from models import User, Comment, Blog, next_id
 @get('/')
 async def index(request):
     users = await User.findAll()
+    logging.info("get test")
     return {
             '__template__': 'test.html',
             'users': users

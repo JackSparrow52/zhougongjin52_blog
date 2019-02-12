@@ -155,9 +155,9 @@ class Model(dict, metaclass=ModelMetaclass):
             sql.append('order by')
             sql.append(orderBy)
         limit = kw.get('limit', None)
-        if limit is None:
+        if limit is not None:
             sql.append('limit')
-            if isinstance(limit, init):
+            if isinstance(limit, int):
                 sql.append('?')
                 args.append(limit)
             elif isinstance(limit, tuple) and len(limit) == 2:
@@ -166,7 +166,6 @@ class Model(dict, metaclass=ModelMetaclass):
             else:
                 raise ValueError('Invalid limit value: %s' % str(limit))
         rs = await select(' '.join(sql), args)
-        print(' '.join(sql))
         return [cls(**r) for r in rs]
     @classmethod
     async def findNumber(cls, selectField, where=None, args=None):
