@@ -1,5 +1,9 @@
 configs = {
         'db': {
-                'host': '172.16.60.236'
+                'host': '47.105.110.236',
+                'port': 3306,
+                'user': 'www-data',
+                'password': 'www-data',
+                'db': 'awesome'
         }
 }
