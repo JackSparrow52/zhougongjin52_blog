@@ -13,14 +13,14 @@ function validateEmail(email) {
 
 $(function (){
 	var vm = new Vue({
-		el: "#vm",
+		el: '#vm',
 		data: {
-			name: "",
-			email: "",
-			password1: "",
-			password2: ""
+			name: '',
+			email: '',
+			password1: '',
+			password2: ''
 		},
-		method: {
+		methods: {
 			submit: function (event) {
 				event.preventDefault();
 				var $form = $('#vm');
@@ -30,7 +30,7 @@ $(function (){
 				if (! validateEmail(this.email.trim().toLowerCase())) {
 					return $form.showFormError('请输入正确的Email地址');
 				}
-				if (! this.password1.length < 6) {
+				if (this.password1.length < 6) {
 					return $form.showFormError('口令长度最少为6个字符');
 				}
 				if (this.password1 !== this.password2){
