@@ -14,6 +14,8 @@ from apis import APIValueError, APIResourceNotFoundError, APIError, APIPermissio
 from models import User, Comment, Blog, next_id
 from config import configs
 
+import markdown2
+
 COOKIE_NAME = 'awesession'
 _COOKIE_KEY = configs.session.secret
 def user2cookie(user, max_age):
@@ -160,6 +162,33 @@ async def api_create_blog(request, *, name, summary, content):
 def check_admin(request):
     if request.__user__ is None or not request.__user__.admin:
         raise APIPermissionError()
+
+@get('/manage/blogs')
+def manage_blogs(*, page='1'):
+    return {
+            '__template__': 'manage_blogs.html',
+            'page_index': get_page_index(page)
+    }
+    
+def get_page_index(page_str):
+    p = 1
+    try:
+        p = int(page_str)
+    except ValueError as e:
+        pass
+    if p < 1:
+        p = 1
+    return p
+
+@get('/api/blogs')
+async def api_blogs(*, page='1'):
+    page_index = get_page_index(page)
+    num = await Blog.findNumber('count(id)')
+    p = Page(num, page_index)
+    if num == 0:
+        return dict(page=p, blogs=())
+    blogs = await Blog.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
+    return dict(page=p, blogs=blogs)
         
 @get('/api/blogs/{id}')
 async def api_get_blog(*, id):
@@ -178,3 +207,18 @@ async def get_blog(id):
             'blog': blog,
             'comments': comments
     }
+    
+@get('/manage/blogs/edit')
+def manage_eidt_blog(*, id):
+    return {
+            '__template__': 'manage_blog_edit.html',
+            'id': id,
+            'action': '/api/blogs/%s' % id
+    }
+    
+@post('/api/blogs/{id}/delete')
+async def api_delete_blog(request, *, id):
+    check_admin(request)
+    blog = await Blog.find(id)
+    await blog.remove()
+    return dict(id=id)
