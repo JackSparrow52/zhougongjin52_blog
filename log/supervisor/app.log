@@ -1,0 +1,1129 @@
+INFO:root:found model: User (table: users)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: email ==> <StringField, varchar(50):None>
+INFO:root: found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root: found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: image ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, text:None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: created_at ==> <FloatField, text:None>
+INFO:root:found model: Comment (table: comments)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(50):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: created_at ==> <FloatField, text:None>
+INFO:root:create database connection pool...
+/root/zhougongjin52_blog/www/app.py:128: DeprecationWarning: loop argument is deprecated
+  app = web.Application(loop=loop, middlewares=[logger_factory, auth_factory, response_factory])
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path: /root/zhougongjin52_blog/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/comments/{id}/delete => api_delete_comments(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/users => api_get_users()
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage/ => manage()
+INFO:root:add route GET /manage/blogs => manage_blogs(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_eidt_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /root/zhougongjin52_blog/www/static
+/root/zhougongjin52_blog/www/app.py:132: DeprecationWarning: Application.make_handler(...) is deprecated, use AppRunner API instead
+  srv = await loop.create_server(app.make_handler(), '172.16.60.236', 9000)
+INFO:root:server started at http://172.16.60.236:9000
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 3
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:25:07 +0000] "GET / HTTP/1.0" 200 4656 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:found model: User (table: users)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: email ==> <StringField, varchar(50):None>
+INFO:root: found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root: found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: image ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, text:None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: created_at ==> <FloatField, text:None>
+INFO:root:found model: Comment (table: comments)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(50):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: created_at ==> <FloatField, text:None>
+INFO:root:create database connection pool...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/aiomysql/connection.py", line 492, in _connect
+    timeout=self.connect_timeout)
+  File "/usr/local/lib/python3.7/asyncio/tasks.py", line 388, in wait_for
+    return await fut
+  File "/usr/local/lib/python3.7/asyncio/streams.py", line 77, in open_connection
+    lambda: protocol, host, port, **kwds)
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 959, in create_connection
+    raise exceptions[0]
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 946, in create_connection
+    await self.sock_connect(sock, address)
+  File "/usr/local/lib/python3.7/asyncio/selector_events.py", line 464, in sock_connect
+    return await fut
+  File "/usr/local/lib/python3.7/asyncio/selector_events.py", line 494, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 111] Connect call failed ('47.105.110.236', 3306)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/zhougongjin52_blog/www/app.py", line 137, in <module>
+    loop.run_until_complete(init(loop))
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 584, in run_until_complete
+    return future.result()
+  File "/root/zhougongjin52_blog/www/app.py", line 127, in init
+    await orm.create_pool(loop=loop, **configs.db)
+  File "/root/zhougongjin52_blog/www/orm.py", line 21, in create_pool
+    loop=loop
+  File "/usr/local/lib/python3.7/site-packages/aiomysql/pool.py", line 29, in _create_pool
+    await pool._fill_free_pool(False)
+  File "/usr/local/lib/python3.7/site-packages/aiomysql/pool.py", line 168, in _fill_free_pool
+    **self._conn_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/aiomysql/connection.py", line 75, in _connect
+    await conn._connect()
+  File "/usr/local/lib/python3.7/site-packages/aiomysql/connection.py", line 523, in _connect
+    self._host) from e
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '47.105.110.236'")
+INFO:root:found model: User (table: users)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: email ==> <StringField, varchar(50):None>
+INFO:root: found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root: found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: image ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, text:None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: created_at ==> <FloatField, text:None>
+INFO:root:found model: Comment (table: comments)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(50):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: created_at ==> <FloatField, text:None>
+INFO:root:create database connection pool...
+/root/zhougongjin52_blog/www/app.py:128: DeprecationWarning: loop argument is deprecated
+  app = web.Application(loop=loop, middlewares=[logger_factory, auth_factory, response_factory])
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path: /root/zhougongjin52_blog/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/comments/{id}/delete => api_delete_comments(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/users => api_get_users()
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage/ => manage()
+INFO:root:add route GET /manage/blogs => manage_blogs(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_eidt_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /root/zhougongjin52_blog/www/static
+/root/zhougongjin52_blog/www/app.py:132: DeprecationWarning: Application.make_handler(...) is deprecated, use AppRunner API instead
+  srv = await loop.create_server(app.make_handler(), '172.16.60.236', 9000)
+INFO:root:server started at http://172.16.60.236:9000
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 3
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:29:50 +0000] "GET / HTTP/1.0" 200 4656 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 3
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:09 +0000] "GET / HTTP/1.0" 200 4485 "-" "Mozilla/5.0 (Linux; Android 8.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/7867 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:13 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/7867 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /blog/0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000
+INFO:root:check user: GET /blog/0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:22 +0000] "GET /blog/0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000 HTTP/1.0" 200 4366 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/7867 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 3
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:22 +0000] "GET / HTTP/1.0" 200 4485 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 3
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:23 +0000] "GET / HTTP/1.0" 200 4485 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /manage/
+INFO:root:check user: GET /manage/
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:39 +0000] "GET /manage/ HTTP/1.0" 302 192 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /manage/comments
+INFO:root:check user: GET /manage/comments
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:40 +0000] "GET /manage/comments HTTP/1.0" 200 4973 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /api/comments
+INFO:root:check user: GET /api/comments
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `comments`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` order by created_at desc limit ?, ?
+INFO:root:rows returned: 2
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:40 +0000] "GET /api/comments?page=1 HTTP/1.0" 200 1238 "http://www.zhougongjin52.top/manage/comments" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /manage/blogs
+INFO:root:check user: GET /manage/blogs
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:43 +0000] "GET /manage/blogs HTTP/1.0" 200 5226 "http://www.zhougongjin52.top/manage/comments" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /api/blogs
+INFO:root:check user: GET /api/blogs
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 3
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:43 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 1734 "http://www.zhougongjin52.top/manage/blogs" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 3
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:45 +0000] "GET / HTTP/1.0" 200 4485 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57 MicroMessenger/7.0.3(0x17000321) NetType/WIFI Language/zh_CN"
+INFO:root:Request: POST /api/blogs/001550770352083f1cd139df71c47b69d07c335b3bb6177000/delete
+INFO:root:check user: POST /api/blogs/001550770352083f1cd139df71c47b69d07c335b3bb6177000/delete
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550770352083f1cd139df71c47b69d07c335b3bb6177000', 'request': <Request POST /api/blogs/001550770352083f1cd139df71c47b69d07c335b3bb6177000/delete >}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: delete from `blogs` where `id`=?
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:46 +0000] "POST /api/blogs/001550770352083f1cd139df71c47b69d07c335b3bb6177000/delete HTTP/1.0" 200 216 "http://www.zhougongjin52.top/manage/blogs" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /manage/blogs
+INFO:root:check user: GET /manage/blogs
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:46 +0000] "GET /manage/blogs?t=1550986425310 HTTP/1.0" 200 5226 "http://www.zhougongjin52.top/manage/blogs" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /api/blogs
+INFO:root:check user: GET /api/blogs
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 2
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:46 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 1285 "http://www.zhougongjin52.top/manage/blogs?t=1550986425310" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: POST /api/blogs/0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000/delete
+INFO:root:check user: POST /api/blogs/0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000/delete
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000', 'request': <Request POST /api/blogs/0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000/delete >}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: delete from `blogs` where `id`=?
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:49 +0000] "POST /api/blogs/0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000/delete HTTP/1.0" 200 216 "http://www.zhougongjin52.top/manage/blogs?t=1550986425310" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /manage/blogs
+INFO:root:check user: GET /manage/blogs
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:49 +0000] "GET /manage/blogs?t=1550986425310&t=1550986427937 HTTP/1.0" 200 5226 "http://www.zhougongjin52.top/manage/blogs?t=1550986425310" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /api/blogs
+INFO:root:check user: GET /api/blogs
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:49 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 769 "http://www.zhougongjin52.top/manage/blogs?t=1550986425310&t=1550986427937" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /manage/users
+INFO:root:check user: GET /manage/users
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:50 +0000] "GET /manage/users HTTP/1.0" 200 4488 "http://www.zhougongjin52.top/manage/blogs?t=1550986425310&t=1550986427937" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /api/users
+INFO:root:check user: GET /api/users
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` order by created_at desc
+INFO:root:rows returned: 8
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:50 +0000] "GET /api/users?page=1 HTTP/1.0" 200 2339 "http://www.zhougongjin52.top/manage/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:check user: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:33:54 +0000] "GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000 HTTP/1.0" 200 4714 "http://www.zhougongjin52.top/" "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57 MicroMessenger/7.0.3(0x17000321) NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /blog/001550770352083f1cd139df71c47b69d07c335b3bb6177000
+INFO:root:check user: GET /blog/001550770352083f1cd139df71c47b69d07c335b3bb6177000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550770352083f1cd139df71c47b69d07c335b3bb6177000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 0
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_protocol.py", line 418, in start
+    resp = await task
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_app.py", line 458, in _handle
+    resp = await handler(request)
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_middlewares.py", line 119, in impl
+    return await handler(request)
+  File "/root/zhougongjin52_blog/www/app.py", line 44, in logger
+    return (await handler(request))
+  File "/root/zhougongjin52_blog/www/app.py", line 110, in auth
+    return (await handler(request))
+  File "/root/zhougongjin52_blog/www/app.py", line 62, in response
+    r = await handler(request)
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_urldispatcher.py", line 157, in handler_wrapper
+    result = await result
+  File "/root/zhougongjin52_blog/www/coroweb.py", line 130, in __call__
+    r = await self._func(**kw)
+  File "/usr/local/lib/python3.7/asyncio/coroutines.py", line 132, in coro
+    res = yield from await_meth()
+  File "/root/zhougongjin52_blog/www/handlers.py", line 226, in get_blog
+    blog.html_content = markdown2.markdown(blog.content)
+AttributeError: 'NoneType' object has no attribute 'content'
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:34:01 +0000] "GET /blog/001550770352083f1cd139df71c47b69d07c335b3bb6177000 HTTP/1.0" 500 315 "http://www.zhougongjin52.top/" "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57 MicroMessenger/7.0.3(0x17000321) NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /blog/001550770352083f1cd139df71c47b69d07c335b3bb6177000
+INFO:root:check user: GET /blog/001550770352083f1cd139df71c47b69d07c335b3bb6177000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550770352083f1cd139df71c47b69d07c335b3bb6177000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 0
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_protocol.py", line 418, in start
+    resp = await task
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_app.py", line 458, in _handle
+    resp = await handler(request)
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_middlewares.py", line 119, in impl
+    return await handler(request)
+  File "/root/zhougongjin52_blog/www/app.py", line 44, in logger
+    return (await handler(request))
+  File "/root/zhougongjin52_blog/www/app.py", line 110, in auth
+    return (await handler(request))
+  File "/root/zhougongjin52_blog/www/app.py", line 62, in response
+    r = await handler(request)
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_urldispatcher.py", line 157, in handler_wrapper
+    result = await result
+  File "/root/zhougongjin52_blog/www/coroweb.py", line 130, in __call__
+    r = await self._func(**kw)
+  File "/usr/local/lib/python3.7/asyncio/coroutines.py", line 132, in coro
+    res = yield from await_meth()
+  File "/root/zhougongjin52_blog/www/handlers.py", line 226, in get_blog
+    blog.html_content = markdown2.markdown(blog.content)
+AttributeError: 'NoneType' object has no attribute 'content'
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:34:06 +0000] "GET /blog/001550770352083f1cd139df71c47b69d07c335b3bb6177000 HTTP/1.0" 500 315 "http://www.zhougongjin52.top/" "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57 MicroMessenger/7.0.3(0x17000321) NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:34:08 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 4.4.4; Coolpad Y82-520 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 MicroMessenger/6.5.4.1000 NetType/4G Language/zh_CN"
+INFO:root:Request: GET /blog/0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000
+INFO:root:check user: GET /blog/0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 0
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_protocol.py", line 418, in start
+    resp = await task
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_app.py", line 458, in _handle
+    resp = await handler(request)
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_middlewares.py", line 119, in impl
+    return await handler(request)
+  File "/root/zhougongjin52_blog/www/app.py", line 44, in logger
+    return (await handler(request))
+  File "/root/zhougongjin52_blog/www/app.py", line 110, in auth
+    return (await handler(request))
+  File "/root/zhougongjin52_blog/www/app.py", line 62, in response
+    r = await handler(request)
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_urldispatcher.py", line 157, in handler_wrapper
+    result = await result
+  File "/root/zhougongjin52_blog/www/coroweb.py", line 130, in __call__
+    r = await self._func(**kw)
+  File "/usr/local/lib/python3.7/asyncio/coroutines.py", line 132, in coro
+    res = yield from await_meth()
+  File "/root/zhougongjin52_blog/www/handlers.py", line 226, in get_blog
+    blog.html_content = markdown2.markdown(blog.content)
+AttributeError: 'NoneType' object has no attribute 'content'
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:34:22 +0000] "GET /blog/0015506847105391f68e0ddbb154fc7819ab2ac61fe2ee3000 HTTP/1.0" 500 225 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.5 NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:34:45 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.27.400 QQBrowser/9.0.2524.400"
+INFO:root:Request: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:check user: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:34:55 +0000] "GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000 HTTP/1.0" 200 4714 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.5 NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:34:59 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 9.0; MI 8 Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/6026 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:35:00 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 9.0; MI 8 Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/6026 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /blog/001550770352083f1cd139df71c47b69d07c335b3bb6177000
+INFO:root:check user: GET /blog/001550770352083f1cd139df71c47b69d07c335b3bb6177000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550770352083f1cd139df71c47b69d07c335b3bb6177000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 0
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_protocol.py", line 418, in start
+    resp = await task
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_app.py", line 458, in _handle
+    resp = await handler(request)
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_middlewares.py", line 119, in impl
+    return await handler(request)
+  File "/root/zhougongjin52_blog/www/app.py", line 44, in logger
+    return (await handler(request))
+  File "/root/zhougongjin52_blog/www/app.py", line 110, in auth
+    return (await handler(request))
+  File "/root/zhougongjin52_blog/www/app.py", line 62, in response
+    r = await handler(request)
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/web_urldispatcher.py", line 157, in handler_wrapper
+    result = await result
+  File "/root/zhougongjin52_blog/www/coroweb.py", line 130, in __call__
+    r = await self._func(**kw)
+  File "/usr/local/lib/python3.7/asyncio/coroutines.py", line 132, in coro
+    res = yield from await_meth()
+  File "/root/zhougongjin52_blog/www/handlers.py", line 226, in get_blog
+    blog.html_content = markdown2.markdown(blog.content)
+AttributeError: 'NoneType' object has no attribute 'content'
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:35:01 +0000] "GET /blog/001550770352083f1cd139df71c47b69d07c335b3bb6177000 HTTP/1.0" 500 225 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.5 NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:check user: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:35:02 +0000] "GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000 HTTP/1.0" 200 4714 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 9.0; MI 8 Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/6026 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:35:52 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15G77 MicroMessenger/7.0.3(0x17000321) NetType/4G Language/zh_CN"
+INFO:root:Request: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:check user: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:35:59 +0000] "GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000 HTTP/1.0" 200 4714 "http://www.zhougongjin52.top/" "Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15G77 MicroMessenger/7.0.3(0x17000321) NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:36:53 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 9; BLA-AL00 Build/HUAWEIBLA-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044504 Mobile Safari/537.36 MMWEBID/8386 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:36:55 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 9; BLA-AL00 Build/HUAWEIBLA-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044504 Mobile Safari/537.36 MMWEBID/8386 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:check user: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:37:00 +0000] "GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000 HTTP/1.0" 200 4714 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 9; BLA-AL00 Build/HUAWEIBLA-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044504 Mobile Safari/537.36 MMWEBID/8386 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:38:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 8.1; vivo X21A Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/922 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:38:14 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.1; vivo X21A Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/922 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:check user: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:38:24 +0000] "GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000 HTTP/1.0" 200 4714 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.1; vivo X21A Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/922 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:40:49 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16B92 MicroMessenger/7.0.0(0x17000024) NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:40:56 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/" "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16B92 MicroMessenger/7.0.0(0x17000024) NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:41:01 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/" "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16B92 MicroMessenger/7.0.0(0x17000024) NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:41:12 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 7.1.2; M6 Note Build/N2G47H; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/2948 MicroMessenger/7.0.3.1400(0x27000339) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:41:13 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 7.1.2; M6 Note Build/N2G47H; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/2948 MicroMessenger/7.0.3.1400(0x27000339) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:41:16 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 7.1.2; M6 Note Build/N2G47H; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/2948 MicroMessenger/7.0.3.1400(0x27000339) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:45:25 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 7.0; JMM-AL00 Build/HONORJMM-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044504 Mobile Safari/537.36 MMWEBID/2035 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:45:28 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 7.0; JMM-AL00 Build/HONORJMM-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044504 Mobile Safari/537.36 MMWEBID/2035 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:check user: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:45:32 +0000] "GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000 HTTP/1.0" 200 4714 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 7.0; JMM-AL00 Build/HONORJMM-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044504 Mobile Safari/537.36 MMWEBID/2035 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:16 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 8.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/7867 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:16 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:17 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/7867 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:check user: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:20 +0000] "GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000 HTTP/1.0" 200 4714 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/7867 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:20 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:20 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:27 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:check user: GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000'}
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `blog_id`, `user_id`, `user_name`, `user_image`, `content`, `created_at` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:28 +0000] "GET /blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000 HTTP/1.0" 200 4714 "http://www.zhougongjin52.top/blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000" "Mozilla/5.0 (Linux; Android 8.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/7867 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:30 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/blog/001550650256393f635e33ea73f4a4bbadd1ec2e1f6f04c000" "Mozilla/5.0 (Linux; Android 8.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/7867 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:32 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/7867 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:05:54:33 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/7867 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 8.1.0; OE106 Build/OPM1.171019.026; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044504 Mobile Safari/537.36 MMWEBID/2001 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:49:13 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.1.0; OE106 Build/OPM1.171019.026; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044504 Mobile Safari/537.36 MMWEBID/2001 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:51:26 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 9.0; EML-AL00 Build/HUAWEIEML-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/2599 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:51:27 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 9.0; EML-AL00 Build/HUAWEIEML-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/2599 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:51:32 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 9.0; EML-AL00 Build/HUAWEIEML-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/2599 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:51:34 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 9.0; EML-AL00 Build/HUAWEIEML-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/2599 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:06:51:35 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 9.0; EML-AL00 Build/HUAWEIEML-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/2599 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/4G Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:07:22:55 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 8.1; Mi Note 3 Build/OPM1.171019.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/5402 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:07:22:56 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.1; Mi Note 3 Build/OPM1.171019.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/5402 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:07:23:04 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.1; Mi Note 3 Build/OPM1.171019.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/5402 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:07:23:07 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.1; Mi Note 3 Build/OPM1.171019.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/5402 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:07:23:07 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:07:23:07 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:08:29:30 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:08:29:30 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9b4) Gecko/2008030317 Firefox/3.0b4"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:08:29:30 +0000] "GET / HTTP/1.0" 200 3595 "-" "Mozilla/5.0 (Linux; Android 8.0; BND-AL10 Build/HONORBND-AL10; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/8563 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:08:29:31 +0000] "GET /favicon.ico HTTP/1.0" 404 172 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Linux; Android 8.0; BND-AL10 Build/HONORBND-AL10; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044408 Mobile Safari/537.36 MMWEBID/8563 MicroMessenger/7.0.3.1400(0x2700033A) Process/tools NetType/WIFI Language/zh_CN"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:13:29:36 +0000] "GET / HTTP/1.0" 200 3595 "http://www.zhougongjin52.top" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:14:20:04 +0000] "GET / HTTP/1.0" 200 3766 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:14:20:10 +0000] "GET / HTTP/1.0" 200 3766 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:14:20:11 +0000] "GET / HTTP/1.0" 200 3766 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:14:20:12 +0000] "GET / HTTP/1.0" 200 3766 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:14:20:15 +0000] "GET / HTTP/1.0" 200 3766 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:14:22:26 +0000] "GET / HTTP/1.0" 200 3766 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:14:22:28 +0000] "GET / HTTP/1.0" 200 3766 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:14:22:29 +0000] "GET / HTTP/1.0" 200 3766 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `passwd`, `admin`, `name`, `image`, `created_at` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user: jack_sparrow_52@163.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:172.16.60.236 [24/Feb/2019:14:22:30 +0000] "GET / HTTP/1.0" 200 3766 "http://www.zhougongjin52.top/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"

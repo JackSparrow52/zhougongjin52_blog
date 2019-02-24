@@ -1,0 +1,2 @@
+2019/02/24 13:07:46 [error] 945#945: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 111.17.92.156, server: www.zhougongjin52.top, request: "GET / HTTP/1.1", upstream: "http://172.16.60.236:9000/", host: "www.zhougongjin52.top"
+2019/02/24 13:08:59 [error] 945#945: *5 connect() failed (111: Connection refused) while connecting to upstream, client: 111.17.92.156, server: www.zhougongjin52.top, request: "GET / HTTP/1.1", upstream: "http://172.16.60.236:9000/", host: "www.zhougongjin52.top"
